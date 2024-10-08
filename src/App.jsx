@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import axios from 'axios'
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
@@ -11,17 +11,46 @@ import Card from 'react-bootstrap/Card';
 
 function App() {
   const newsApi = ""
+  const [authors, setAuthors] = useState([]);
+  const [titles, setTitle] = useState([]);
+  const [descriptions, setDiscription] = useState([])
+  const [urls, setUrl] = useState([])
+
+
+
   useEffect(() => {
     fetchNews();
+
   })
 
   const fetchNews = async () => {
-    // console.log('This text is working');
-    console.log(newsApi)
-    const Data = await axios.get(`https://newsapi.org/v2/top-headlines?country=us&apiKey=0f5722122ab7419ab5f71db0233c7fda`)
-    const NewsComponents = Data.data.articles;
-    console.log(NewsComponents)
+    try {
+      const response = await axios.get(`https://newsapi.org/v2/top-headlines?country=us&apiKey=${newsApi}`)
+      console.log(response)
+      const NewsComponents = response.data.articles;
+      console.log(NewsComponents)
 
+      const authorsList = NewsComponents.map(NewsComponent => NewsComponent.author || 'unknown author')
+      setAuthors(authorsList)
+      console.log(authors)
+
+      const titleList = NewsComponents.map(NewsComponent => NewsComponent.title || 'unknown title')
+      setTitle(titleList);
+      console.log(titles)
+
+      const descriptionList = NewsComponents.map(NewsComponent => NewsComponent.description || 'unknown description')
+      setDiscription(descriptionList);
+      console.log(descriptions)
+
+      const urlList = NewsComponents.map(NewsComponent => NewsComponent.url || 'unknown url')
+      setUrl(urlList);
+      console.log(urls)
+
+
+
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   return (
@@ -34,17 +63,24 @@ function App() {
           </Container>
         </Navbar>
       </Container>
-      <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src="holder.js/100px180" />
-      <Card.Body>
-        <Card.Title>Card Title</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text>
-        <Button variant="primary">Go somewhere</Button>
-      </Card.Body>
-    </Card>
+
+      {authors.length > 0 ? (
+        authors.map((article, index) => (
+          <Card key={index} style={{ width: '18rem' }}>
+            <Card.Body>
+              <Card.Title>Card Title - {article.title} {index + 1} </Card.Title>
+              <Card.Text>
+                {article.description} -
+                {article.author}
+              </Card.Text>
+              <Button variant="primary" href={article.url}>More info</Button>
+            </Card.Body>
+          </Card>
+        )
+        )) : (
+        <p>Loading News...</p>
+      )}
+
     </>
   )
 }
