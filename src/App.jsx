@@ -8,7 +8,6 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
 function App() {
-  const newsApi = import.meta.env.VITE_NEWS_API_KEY;
   const [articles, setArticles] = useState([]);
   const [show, setShow] = useState(false);
 
@@ -24,12 +23,11 @@ function App() {
     if (cachedData) {
       setArticles(cachedData);
     } else {
-      // const fetchNews = async () => {
       try {
-        const response = await axios.get(`https://newsapi.org/v2/top-headlines?country=us&apiKey=${newsApi}`)
+        const response = await axios.get(`http://localhost:5000/api/news`)
         // console.log(response)
-        const NewsComponents = response.data.articles;
-        console.log(NewsComponents)
+        const NewsComponents = response.data
+        // console.log(NewsComponents)
 
         const articlesData = NewsComponents.map(news => ({
           author: news.author || 'unknown author',
@@ -58,7 +56,7 @@ function App() {
       if (now - cachedTime < CACHE_EXPIRATION) {
         return JSON.parse(cachedArticles);
       } else {
-        // If cache is expired, clear it
+        
         localStorage.removeItem(CACHE_KEY);
         localStorage.removeItem(`${CACHE_KEY}_time`);
       }
