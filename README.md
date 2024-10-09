@@ -1,8 +1,20 @@
-# React + Vite
+# Simple News Reader
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+	Created using ReactJS [ Frontend ] , ExpressJS [ Backend ]
+	libraries : axios , express, react-bootstrap, cors
 
-Currently, two official plugins are available:
+## How to run the application
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Step 1 : Make sure vscode, firefox/chrome, git, nodejs, npm is installed on your system 
+Step 2 : clone the project ()
+Step 3 : move the folder named SimpleNewsReader and open terminal 
+Step 4 : type command : touch .env 
+Step 5 : Open the .env file and put your NewsAPI key like : NEWSAPI_KEY={your_api_key}
+Step 6 : Now type command : npm i && npm run dev 
+Step 7 : Open another terminal from same folder and type : node server.cjs
+Step 8 : Open the browser and visit : http://localhost:5173  . Application Setup if finished
+
+If you like the project, give me star and a follow. 
+I'm availabe for work. Feel free to contact me. 
+
+Thankyou
