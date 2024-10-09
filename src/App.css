@@ -1,6 +1,43 @@
 #root {
-  /* max-width: 1280px; */
   margin: 0 auto;
   padding: 2rem;
-  /* text-align: center; */
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  display: grid;
+
+}
+
+.cards {
+
+  color: white;
+  width: 800px;
+  border: 2px solid blue;
+  margin-top: 10px;
+  /* display: inline-flex; */
+}
+
+.card {
+  background-color: black;
+  padding: 10px;
+
+}
+
+.image {
+  width: 750px;
+
+  height: 500px;
+}
+
+.main-container {
+  width: fit-content;
+}
+
+a {
+  text-decoration: none;
+  color: rgb(0, 255, 85);
+}
+.alert{
+  background-color: rgb(255, 102, 102);
+  color: red;
 }
