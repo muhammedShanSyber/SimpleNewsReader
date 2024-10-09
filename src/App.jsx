@@ -7,16 +7,13 @@ import './App.css'
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
-
 function App() {
-  const newsApi = ""
+  const newsApi = import.meta.env.VITE_NEWS_API_KEY;
   const [articles, setArticles] = useState([]);
-
   const [show, setShow] = useState(false);
 
   const CACHE_KEY = 'cachedArticles';
   const CACHE_EXPIRATION = 10 * 60 * 1000;
-
 
   useEffect(() => {
     fetchNews();
